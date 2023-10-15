@@ -1,0 +1,160 @@
+/* -----
+
+* {
+    box-sizing: border-box;
+}
+ */
+ 
+
+
+body {
+  margin:5px;
+  font-family: 'Delius Unicase', cursive;
+  color: rgb(65, 91, 84);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(255, 255, 255);
+}
+
+.board {
+  display: flex;
+  background-color:rgb(190, 215, 208);
+  height:225px;
+  width:850px;
+  border-radius:30px;
+  border-style: solid;
+  border-color: rgb(220, 209, 175);
+  padding: 20px;
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
+  inset 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.section {
+  background-color:rgba(185, 94, 20, 0.1);
+  margin:5px;
+  border-radius:20px;
+}
+
+.endsection
+{
+  display:flex;
+  flex-grow:1;
+}
+
+.midsection
+{
+  display:flex;
+  flex-direction:column;
+  flex-grow:6;
+}
+
+.midrow
+{
+  display:flex;
+  flex-grow:1;
+}
+
+.pot
+{
+  position:relative;
+  background-color:rgba(240, 255, 234, 0.5);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5),
+  inset 5px 5px 5px rgba(0,0,0,0.5);
+  flex-grow:1;
+  margin:10px;
+  border-radius:50px;
+  border-style: solid;
+  border-color:rgb(214, 210, 196);
+}
+
+.bead
+{
+  position:absolute;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+}
+
+.score {
+    display: grid;
+    grid-template-columns: 50fr 50fr 50fr;
+    grid-template-rows: 50fr 50fr;
+    grid-template-areas: 
+        "header header header"
+        "left . right";
+    border-style: solid;
+    border-color: rgb(163, 166, 159);
+    margin: 2rem;
+    padding: 0 20px;
+    background-color: rgb(130, 127, 100);
+    color: whitesmoke;
+}
+
+.score > h3 
+{
+    grid-area: header;
+    justify-self: center;
+
+}
+
+.score > .score-player1 {
+    grid-area: left;
+}
+
+.score > .score-player2 {
+    grid-area: right;
+
+}
+
+
+nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.collapsible {
+    font-family: 'Delius Unicase', cursive;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    background-color: #f8f6a9;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #a89f17;
+    color: whitesmoke;
+}
+
+
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+
+.seeds {
+    display: inline-flex;
+}
+
+.seeds > div {
+	border: solid;
+	border-radius: 45%;
+    padding: 7px 10px;
+    background-color: rgb(250, 154, 10);
+    border-color:rgb(192, 136, 5)
+}
