@@ -18,14 +18,21 @@ body {
   background-color:rgb(255, 255, 255);
 }
 
+
+.turn > .player1 {
+    position: absolute;
+    top: 450px; left: center;
+}
+
+
 .board {
   display: flex;
-  background-color:rgb(190, 215, 208);
+  background-color:rgb(5, 71, 52);
   height:225px;
   width:850px;
   border-radius:30px;
   border-style: solid;
-  border-color: rgb(220, 209, 175);
+  border-color: rgb(242, 240, 235);
   padding: 20px;
 
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
@@ -61,8 +68,8 @@ body {
 {
   position:relative;
   background-color:rgba(240, 255, 234, 0.5);
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.5),
-  inset 5px 5px 5px rgba(0,0,0,0.5);
+  box-shadow:
+  inset 25px 25px 25px rgba(29, 68, 53, 0.5);
   flex-grow:1;
   margin:10px;
   border-radius:50px;
@@ -70,13 +77,7 @@ body {
   border-color:rgb(214, 210, 196);
 }
 
-.bead
-{
-  position:absolute;
-	border-radius: 50%;
-	width: 25px;
-	height: 25px;
-}
+
 
 .score {
     display: grid;
@@ -87,10 +88,12 @@ body {
         "left . right";
     border-style: solid;
     border-color: rgb(163, 166, 159);
-    margin: 2rem;
-    padding: 0 20px;
-    background-color: rgb(130, 127, 100);
+    margin: 7rem;
+    padding: 15px 40px;
+    background-color: rgb(95, 134, 94);
     color: whitesmoke;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+
 }
 
 .score > h3 
@@ -121,8 +124,8 @@ nav {
     justify-content: flex-start;
     align-items: start;
     width: 100%;
-    background-color: #f8f6a9;
-    color: #444;
+    background-color: #22291b;
+    color: #f7f2f2;
     cursor: pointer;
     padding: 18px;
 
@@ -133,7 +136,7 @@ nav {
 }
 
 .active, .collapsible:hover {
-    background-color: #a89f17;
+    background-color: #6f9f75;
     color: whitesmoke;
 }
 
@@ -147,14 +150,44 @@ nav {
 }
 
 
-.seeds {
+
+.beads {
     display: inline-flex;
 }
 
-.seeds > div {
-	border: solid;
+.beads > div {
+
+	border: 0.5px;
+    border-style: solid;
 	border-radius: 45%;
-    padding: 7px 10px;
+    width: 20px;
+    padding: 7px 1px;
     background-color: rgb(250, 154, 10);
-    border-color:rgb(192, 136, 5)
+    border-color:rgb(192, 136, 5);
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5),
+    inset 4px 4px 4px rgba(103, 62, 12, 0.5);
 }
+
+
+
+.beads > #c1 {
+position: absolute;
+top: 335px; left: 318px;
+z-index: auto;
+}
+
+
+.beads > #c2 {
+    position: absolute;
+    top: 355px; left: 318px;
+    }
+
+.beads > #c3 {
+    position: absolute;
+    top: 355px; left: 347px;
+    }
+
+.beads > #c4 {
+        position: absolute;
+        top: 335px; left: 347px;
+        }
