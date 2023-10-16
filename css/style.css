@@ -7,28 +7,34 @@
  
 
 
+
 body {
+display: flex;
   margin:5px;
   font-family: 'Delius Unicase', cursive;
   color: rgb(65, 91, 84);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+
   background-color:rgb(255, 255, 255);
 }
 
 
+
 .turn > .player1 {
-    position: absolute;
-    top: 450px; left: center;
+    position: relative;
+    top: 350px; left: center;
 }
 
 
 .board {
-  display: flex;
+    position: relative;
+
+    display: flex;
   background-color:rgb(5, 71, 52);
-  height:225px;
+  height:250px;
   width:850px;
   border-radius:30px;
   border-style: solid;
@@ -169,25 +175,242 @@ nav {
 }
 
 
-
 .beads > #c1 {
-position: absolute;
-top: 335px; left: 318px;
-z-index: auto;
+    position: relative;
+    top: -490px; left: 290px;
 }
 
-
 .beads > #c2 {
-    position: absolute;
-    top: 355px; left: 318px;
+    position: relative;
+    top: -480px; left: 250px;
     }
 
 .beads > #c3 {
-    position: absolute;
-    top: 355px; left: 347px;
+    position: relative;
+    top: -460px; left: 240px;
     }
 
 .beads > #c4 {
-        position: absolute;
-        top: 335px; left: 347px;
-        }
+    position: relative;
+    top: -450px; left: 205px;
+}
+
+.beads > #c5 {
+    position: relative;
+    top: -480px; left: 280px;
+}
+        
+.beads > #c6 {
+    position: relative;
+    top: -480px; left: 280px;
+    }
+        
+.beads > #c7 {
+    position: relative;
+    top: -460px; left: 230px;
+}
+        
+.beads > #c8 {
+    position: relative;
+    top: -450px; left: 220px;
+}
+
+.beads > #c9 {
+    position: relative;
+    top: -480px; left: 320px;
+}
+
+.beads > #c10 {
+    position: relative;
+    top: -480px; left: 270px;
+    }
+
+.beads > #c11 {
+    position: relative;
+    top: -460px; left: 240px;
+    }
+
+.beads > #c12 {
+    position: relative;
+    top: -450px; left: 240px;
+}
+
+.beads > #c13 {
+    position: relative;
+    top: -470px; left: 330px;
+}
+        
+.beads > #c14 {
+    position: relative;
+    top: -480px; left: 310px;
+    }
+        
+.beads > #c15 {
+    position: relative;
+    top: -480px; left: 250px;
+}
+        
+.beads > #c16 {
+    position: relative;
+    top: -450px; left: 240px;
+}
+
+.beads > #c17 {
+    position: relative;
+    top: -480px; left: 310px;
+}
+
+.beads > #c18 {
+    position: relative;
+    top: -480px; left: 320px;
+    }
+
+.beads > #c19 {
+    position: relative;
+    top: -460px; left: 290px;
+    }
+
+.beads > #c20 {
+    position: relative;
+    top: -450px; left: 250px;
+}
+
+.beads > #c21 {
+    position: relative;
+    top: -490px; left: 350px;
+}
+        
+.beads > #c22 {
+    position: relative;
+    top: -490px; left: 300px;
+    }
+        
+.beads > #c23 {
+    position: relative;
+    top: -470px; left: 290px;
+}
+        
+.beads > #c24 {
+    position: relative;
+    top: -450px; left: 280px;
+}
+
+.beads > #c25 {
+    position: relative;
+    top: -590px; left: 250px;
+}
+        
+.beads > #c26 {
+    position: relative;
+    top: -575px; left: 210px;
+    }
+        
+.beads > #c27 {
+    position: relative;
+    top: -620px; left: 210px;
+}
+        
+.beads > #c28 {
+    position: relative;
+    top: -610px; left: 160px;
+}
+
+.beads > #c29 {
+    position: relative;
+    top: -610px; left: 60px;
+}
+        
+.beads > #c30 {
+    position: relative;
+    top: -610px; left: 10px;
+    }
+        
+.beads > #c31 {
+    position: relative;
+    top: -590px; left: -20px;
+}
+        
+.beads > #c32 {
+    position: relative;
+    top: -590px; left: -10px;
+}
+
+.beads > #c33 {
+    position: relative;
+    top: -600px; left: -150px;
+}
+        
+.beads > #c34 {
+    position: relative;
+    top: -590px; left: -190px;
+    }
+        
+.beads > #c35 {
+    position: relative;
+    top: -570px; left: -200px;
+}
+        
+.beads > #c36 {
+    position: relative;
+    top: -580px; left: -200px;
+}
+
+.beads > #c37 {
+    position: relative;
+    top: -570px; left: -340px;
+}
+        
+.beads > #c38 {
+    position: relative;
+    top: -580px; left: -380px;
+    }
+        
+.beads > #c39 {
+    position: relative;
+    top: -600px; left: -400px;
+}
+        
+.beads > #c40 {
+    position: relative;
+    top: -600px; left: -400px;
+}
+
+.beads > #c41 {
+    position: relative;
+    top: -580px; left: -520px;
+}
+        
+.beads > #c42 {
+    position: relative;
+    top: -590px; left: -580px;
+    }
+        
+.beads > #c43 {
+    position: relative;
+    top: -610px; left: -600px;
+}
+        
+.beads > #c44 {
+    position: relative;
+    top: -600px; left: -600px;
+}
+
+.beads > #c45 {
+    position: relative;
+    top: -595px; left: -720px;
+}
+        
+.beads > #c46 {
+    position: relative;
+    top: -580px; left: -750px;
+    }
+        
+.beads > #c47 {
+    position: relative;
+    top: -600px; left: -800px;
+}
+        
+.beads > #c48 {
+    position: relative;
+    top: -610px; left: -800px;
+}
