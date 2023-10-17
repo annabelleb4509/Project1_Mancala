@@ -9,7 +9,6 @@
 
 
 body {
-display: flex;
   margin:5px;
   font-family: 'Delius Unicase', cursive;
   color: rgb(65, 91, 84);
@@ -17,11 +16,8 @@ display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
   background-color:rgb(255, 255, 255);
 }
-
-
 
 .turn > .player1 {
     position: relative;
@@ -30,8 +26,6 @@ display: flex;
 
 
 .board {
-    position: relative;
-
     display: flex;
   background-color:rgb(5, 71, 52);
   height:250px;
@@ -40,16 +34,16 @@ display: flex;
   border-style: solid;
   border-color: rgb(242, 240, 235);
   padding: 20px;
-
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
   inset 5px 5px 5px rgba(0,0,0,0.5);
+
 }
 
 .section {
-  background-color:rgba(185, 94, 20, 0.1);
-  margin:5px;
-  border-radius:20px;
-}
+    background-color:rgba(185, 94, 20, 0.1);
+    margin:5px;
+    border-radius: 20px;
+  }
 
 .endsection
 {
@@ -70,20 +64,40 @@ display: flex;
   flex-grow:1;
 }
 
-.pot
-{
+.pot {
+    display: flex;
+
   position:relative;
   background-color:rgba(240, 255, 234, 0.5);
   box-shadow:
   inset 25px 25px 25px rgba(29, 68, 53, 0.5);
   flex-grow:1;
   margin:10px;
-  border-radius:50px;
+  border-radius: 100%;
   border-style: solid;
   border-color:rgb(214, 210, 196);
 }
 
+.beads {
+    width: 2vw;
+    height: 0.5vw;
+    background-color: rgb(250, 154, 10);
+    position: absolute;
+    border-radius: 100%;
+    border: 0.5px solid rgb(192, 136, 5);
+    transform: translateX(0vw);
+    padding: 7px 1px;
+    
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5),
+    inset 4px 4px 4px rgba(103, 62, 12, 0.5);
+    transform: translateX(0vw);
+    transition: transform 0.8s;
+}
 
+.fake-left-position {
+    transform: translateX(-20vw);
+    transition: none;
+  }
 
 .score {
     display: grid;
@@ -157,9 +171,7 @@ nav {
 
 
 
-.beads {
-    display: inline-flex;
-}
+/* -----
 
 .beads > div {
 
@@ -414,3 +426,5 @@ nav {
     position: relative;
     top: -610px; left: -800px;
 }
+
+----- */
