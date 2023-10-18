@@ -137,9 +137,9 @@ function captureBeads(pots, lastPot) {
         let beads = []
         if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 0) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[12];
-            state.board[lastPot] = 0;
-            state.board[12] = 0;
-            store = 6
+            state.board[lastPot] = 0;                                                           // resets value of last pot to 0, as all beads taken out
+            state.board[12] = 0;                                                                // same here, for opposite pot
+            store = 6                                   
 
             pots.forEach(element => {
                 if (element.id === lastPot) {
@@ -149,47 +149,187 @@ function captureBeads(pots, lastPot) {
                 }
             });
             moveBeadsToStore(pots, beads, store);
-
-           /* 
-        } else if (lastPotBeanCount === 1 && state.player === 1 && state.board[1]) {
-            state.store1 = state.store1 + state.board[0] + state.board[11];
-        } else if (lastPotBeanCount === 1 && state.player === 1 && state.board[2]) {
-            state.store1 = state.store1 + 1 + state.board[10];
-        } else if (lastPotBeanCount === 1 && state.player === 1 && state.board[3]) {
-            state.store1 = state.store1 + 1 + state.board[9];
-        } else if (lastPotBeanCount === 1 && state.player === 1 && state.board[4]) {
-            state.store1 = state.store1 + 1 + state.board[8];
-        } else if (lastPotBeanCount === 1 && state.player === 1 && state.board[5]) {
-            state.store1 = state.store1 + 1 + state.board[7];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[7]) {
-            state.store2 = state.store2 + 1 + state.board[5];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[8]) {
-            state.store2 = state.store2 + 1 + state.board[4];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[9]) {
-            state.store2 = state.store2 + 1 + state.board[3];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[10]) {
-            state.store2 = state.store2 + 1 + state.board[2];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[11]) {
-            state.store2 = state.store2 + 1 + state.board[1];
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[12]) {
-            state.store2 = state.store2 + 1 + state.board[0];
         
-            console.log('captured beads' + captureBeads())
-            //   state.turn = state.turn;                            // is this syntax correct?
-        } else {
-                state.turn !== state.turn;
-        }; */
-    }
-console.log('pots' + pots)
-        // Move bead to next Pot but first
-        // we need to identify our pot
+        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 1) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[11];
+            state.board[lastPot] = 0;
+            state.board[11] = 0;                                                                
+            store = 6       
 
-            checkGameOver();
-            render()
-        };
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 11) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 2) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[10];
+            state.board[lastPot] = 0;
+            state.board[10] = 0;                                                                
+            store = 6       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 10) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 3) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[9];
+            state.board[lastPot] = 0;
+            state.board[9] = 0;                                                                
+            store = 6       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 9) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 4) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[8];
+            state.board[lastPot] = 0;
+            state.board[8] = 0;                                                                
+            store = 6       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 8) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+
+        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 5) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[7];
+            state.board[lastPot] = 0;
+            state.board[7] = 0;                                                                
+            store = 6       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 7) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 7) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[5];
+            state.board[lastPot] = 0;
+            state.board[5] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 5) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 8) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[4];
+            state.board[lastPot] = 0;
+            state.board[4] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 4) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 9) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[3];
+            state.board[lastPot] = 0;
+            state.board[3] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 3) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 10) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[2];
+            state.board[lastPot] = 0;
+            state.board[2] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 2) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 11) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[1];
+            state.board[lastPot] = 0;
+            state.board[1] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 1) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+
+        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[12]) {
+            state.board[6] = state.board[6] + state.board[lastPot] + state.board[0];
+            state.board[lastPot] = 0;
+            state.board[0] = 0;                                                                
+            store = 13       
+
+            pots.forEach(element => {
+                if (element.id === lastPot) {
+                    beads.push(element.children);
+                } else if (element.id === 0) {
+                    beads.push(element.children);
+                }
+            });
+            moveBeadsToStore(pots, beads, store);
+        } else {
+            state.turn !== state.turn;
+        }
+  //      console.log('captured beads' + captureBeads())
+        checkGameOver();
+        render()
+        console.log('pots' + pots)
+        console.log('check if working')
+    };
+     
+
+
     
     
-    
+   /* 
 function moveBeadsToStore(pots, beads, store) {
     pots.forEach(element => {
         if (element.id === store) {
@@ -199,8 +339,7 @@ function moveBeadsToStore(pots, beads, store) {
         };
     });
 }
-
-
+*/
 
 
 
