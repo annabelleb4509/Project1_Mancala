@@ -14,8 +14,6 @@ const players = {
 
 let state = {                                          // how do I define the board row1+row2 or include stores?
     board: [],
-    store1: null,
-    store2: null,
     turn: null,
     winner: null,
 }
@@ -26,8 +24,12 @@ let state = {                                          // how do I define the bo
 const elements = {
     message: document.querySelectorAll('.turn > div'),
     board: document.querySelectorAll('.board > div'),
+    player1: document.querySelector('.player1'),
+    player2: document.querySelector('.player2'),
     beads: document.querySelectorAll('.beads'),
-    pots: document.querySelectorAll('.pot')
+    pots: document.querySelectorAll('.pot'),
+    scorePlayer1: document.querySelector('.score-player1'),
+    scorePlayer2: document.querySelector('.score-player2'),
  //   playAgain: document.
 // 
 }
@@ -56,13 +58,15 @@ function init() {
     state.store1 = null;
     state.store2 = null;
     state.turn = 1;
+    elements.player1.innerText = `Player 1's turn`;
+    elements.player1.style.color = 'rgb(250, 154, 10)';
     state.winner = null;
     render();
 }
 
 elements.beads.forEach(function (element) {
-    element.style.top = 2 + (Math.random() * 4) + 'vw';  
-    element.style.left = 2 + (Math.random() * 3) + 'vw';
+    element.style.top = 1 + (Math.random() * 4) + 'vw';  
+    element.style.left = 1 + (Math.random() * 3) + 'vw';
 });  
 
 
@@ -110,6 +114,10 @@ function handleAction(event) {
                         // Set bean element from query
                         let bead = beads[(i-1)]
                         element.appendChild(bead);
+                        bead.classList.add('fake-left-position'); 
+                        setTimeout(() => {
+                            bead.classList.remove('fake-left-position');
+                        }, 0);
                     }
                 });
                 
@@ -124,18 +132,46 @@ function handleAction(event) {
             console.log('state.board ' + state.board)
         }
         console.log('pots' + pots)
-        console.log(pots)
-        captureBeads(pots, nextPot)
-        state.board[currentPot] = 0
-        console.log('end state.board ' + state.board)
+        console.log(pots);
+        console.log('whos turn'+ state.turn)
+    if (state.board[nextPot] !== 1) {
+        switchPlayer();
+    } else if(state.board[nextPot] === 6 || state.board[nextPot] === 13) {
+        state.turn = (state.turn === 1) ? 1 : 2;
+
+    } else {captureBeads(pots, nextPot);
     }
-    
+    state.board[currentPot] = 0
+    console.log('end state.board ' + state.board)
+    }
+    checkGameOver();
+    render();   
 }
+
+
+function switchPlayer() {
+    state.turn = (state.turn === 1) ? 2 : 1;
+    if (state.turn === 1) {
+        elements.player1.innerText = `Player 1's turn`;
+        elements.player1.style.color = 'rgb(250, 154, 10)';
+        elements.player2.innerText = `Player 2`;
+        elements.player2.style.color = 'grey';
+    } else {
+        elements.player2.innerText = `Player 2's turn`;
+        elements.player2.style.color = 'rgb(250, 154, 10)';
+        elements.player1.innerText = `Player 1`;
+        elements.player1.style.color = 'grey';
+
+    }
+    console.log(`${players[state.turn]}'s turn.`);
+};
+
+
 
 function captureBeads(pots, lastPot) {
         let lastPotBeanCount = state.board[lastPot];
         let beads = []
-        if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 0) {
+        if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 0) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[12];
             state.board[lastPot] = 0;                                                           // resets value of last pot to 0, as all beads taken out
             state.board[12] = 0;                                                                // same here, for opposite pot
@@ -150,7 +186,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
         
-        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 1) {
+        } else if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 1) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[11];
             state.board[lastPot] = 0;
             state.board[11] = 0;                                                                
@@ -165,7 +201,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 2) {
+        } else if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 2) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[10];
             state.board[lastPot] = 0;
             state.board[10] = 0;                                                                
@@ -180,7 +216,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 3) {
+        } else if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 3) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[9];
             state.board[lastPot] = 0;
             state.board[9] = 0;                                                                
@@ -195,7 +231,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 4) {
+        } else if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 4) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[8];
             state.board[lastPot] = 0;
             state.board[8] = 0;                                                                
@@ -211,7 +247,7 @@ function captureBeads(pots, lastPot) {
             moveBeadsToStore(pots, beads, store);
 
 
-        } else if (lastPotBeanCount === 1 && state.player === 1 && lastPot === 5) {
+        } else if (lastPotBeanCount === 1 && state.turn === 1 && lastPot === 5) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[7];
             state.board[lastPot] = 0;
             state.board[7] = 0;                                                                
@@ -226,7 +262,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 7) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && lastPot === 7) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[5];
             state.board[lastPot] = 0;
             state.board[5] = 0;                                                                
@@ -241,7 +277,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 8) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && lastPot === 8) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[4];
             state.board[lastPot] = 0;
             state.board[4] = 0;                                                                
@@ -256,7 +292,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 9) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && lastPot === 9) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[3];
             state.board[lastPot] = 0;
             state.board[3] = 0;                                                                
@@ -271,7 +307,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 10) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && lastPot === 10) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[2];
             state.board[lastPot] = 0;
             state.board[2] = 0;                                                                
@@ -286,7 +322,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && lastPot === 11) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && lastPot === 11) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[1];
             state.board[lastPot] = 0;
             state.board[1] = 0;                                                                
@@ -301,7 +337,7 @@ function captureBeads(pots, lastPot) {
             });
             moveBeadsToStore(pots, beads, store);
 
-        } else if (lastPotBeanCount === 1 && state.player === 2 && state.board[12]) {
+        } else if (lastPotBeanCount === 1 && state.turn === 2 && state.board[12]) {
             state.board[6] = state.board[6] + state.board[lastPot] + state.board[0];
             state.board[lastPot] = 0;
             state.board[0] = 0;                                                                
@@ -315,21 +351,18 @@ function captureBeads(pots, lastPot) {
                 }
             });
             moveBeadsToStore(pots, beads, store);
-        } else {
-            state.turn !== state.turn;
-        }
+   //     } else {
+     //       state.turn !== state.turn;
+       // }
   //      console.log('captured beads' + captureBeads())
         checkGameOver();
         render()
         console.log('pots' + pots)
         console.log('check if working')
     };
-     
+}   
 
 
-    
-    
-   /* 
 function moveBeadsToStore(pots, beads, store) {
     pots.forEach(element => {
         if (element.id === store) {
@@ -339,68 +372,41 @@ function moveBeadsToStore(pots, beads, store) {
         };
     });
 }
-*/
-
-
 
 
 function checkGameOver() {
-    player1Sum = state.board[0] + state.board[1] + state.board[2] + state.board[3] + state.board[4] + state.board[5]
-    player2Sum = state.board[7] + state.board[1] + state.board[2] + state.board[3] + state.board[4] + state.board[6]
-    if (player1Sum == 0 || player2Sum == 0) {
-     determineWinner();        
-    };
-//     if (state.board[i] === 0) {
-//         determineWinner();
-//     } else {
-//     return;
-// }
-};
+    console.log('accessing function?') 
+    player1Sum = (state.board[0] + state.board[1] + state.board[2] + state.board[3] + state.board[4] + state.board[5]);
+    player2Sum = state.board[7] + state.board[1] + state.board[2] + state.board[3] + state.board[4] + state.board[6];
+    if (player1Sum === 0 || player2Sum === 0) {
+     determineWinner();   
+    } else {
+        return;
+    }   
+};   
+
 
 function determineWinner() {
     if (state.store1 === state.store2){
         state.winner = 0;
+        elements.player1.innerText = `It's a draw!`;
+        elements.player2.innerText = `It's a draw!`;
     }
     else if (state.store1 > state.store2) {
         state.winner = 1;
+        elements.player1.innerText = `Player 1 wins!`;
     } else {
         state.winner = 2;
+        elements.player2.innerText = `Player 2 wins!`;
     };
     render()
 };
 
 
 function render() {
-    renderBoard();
-    renderStore();
-    renderMessage();
-}
-
-
-function renderBoard() {
-    // state.board.forEach(function() {
-    //     elements.beads[index].splice(currentPot, 1, 0);
-    //     elements.beads
-    // });
-};
-
-function renderStore() {
-    state.store1 = ''
-    state.store2 = ''
-//take count of beads in each store AND add number to player1/player2 in score section on screen
+    elements.scorePlayer1.innerHTML = `Player 1  <br>  <span> ${[state.board[6]]} </span>` ; 
+    elements.scorePlayer2.innerHTML = `Player 2  <br>  <span> ${[state.board[13]]} </span>` ;
 };
     
 
-function renderMessage() {    
-    if (state.winner === 0) {
-        elements.message.innerHTML = `It's a draw`;
-    }      // show winner
-    else if (state.winner) {
-        elements.message.innerHTML = `<span>${ players[state.winner] }</span> wins!`; 
-    } else {
-        elements.message.innerHTML = `<span ${ players[state.turn] }</span>'s turn`;   
-    };
-};
-
-// show which player's turn by lighting up 'Player' next to board
 
