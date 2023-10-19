@@ -29,7 +29,7 @@ Each player controls one of the two rows, and their Mancala is the large pit to 
 
 At the start, each of the 12 small pits has 4 beads.
 
-![Board Mancala](Assets/Board_Mancala.png)
+![Board Mancala](assets/Board_Mancala.png)
 
 ### Basic rules of Mancala
 
