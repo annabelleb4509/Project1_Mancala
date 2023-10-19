@@ -75,9 +75,7 @@ body {
   border-radius:30px;
   border-style: solid;
   border-color: rgb(242, 240, 235);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
-  inset 15px 15px 15px rgba(0,0,0,0.5);
-
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .section {
@@ -133,16 +131,6 @@ display: flex;
     transform: translateX(0vw);
     transition: transform 0.5s;
 }
-
-.fake-left-position {
-    transform: translateX(-10vw);
-    transition: none;
-  }
-
-.fake-right-position {
-    transform: translateX(10vw);
-    transition: none;
-  }
 
 .score {
     display: grid;
