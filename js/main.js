@@ -132,31 +132,31 @@ function handleAction(event) {
             nextPot = (nextPot + 1) % pots.length;                      // Identify next pot & if we are at the end of the pots
            
             if (state.turn === 1 && nextPot !== 13 || state.turn === 2 && nextPot !== 6) {                  //to exclude opposite player's store - 
-                nextPotBeanCount = state.board[nextPot];
-                state.board[nextPot] = nextPotBeanCount + 1;
+                nextPotBeadCount = state.board[nextPot];
+                state.board[nextPot] = nextPotBeadCount + 1;
                 console.log('asdfasdf')
                 console.log(state.board)
                 
                 // } else if ( nextPot === 14) {
-                // nextPotBeanCount = state.board[0];
-                // state.board[0] = nextPotBeanCount + 1;
+                // nextPotBeadCount = state.board[0];
+                // state.board[0] = nextPotBeadCount + 1;
             } 
             else {                                              //else: means if next pot is store of the other player (ie for player 1 = pot13, for player 2 = pot6), skip this pot and move to next
                 nextPot = (nextPot + 1) % pots.length;
                 console.log(' nextPot asdf2 ' + nextPot)
-                nextPotBeanCount = state.board[nextPot];
-                state.board[nextPot] = nextPotBeanCount + 1;
+                nextPotBeadCount = state.board[nextPot];
+                state.board[nextPot] = nextPotBeadCount + 1;
             }  
             // Move bead to next Pot but first
             // we need to identify our pot
             pots.forEach(element => {
                 if (element.id == nextPot) {
-                    // Set bean element from query
+                    // Set bead element from query
                     let bead = beads[(i-1)]
                     console.log('bead length' + bead.length)
              
                     element.appendChild(bead);
-            /*           if (element.id === 6) {
+                     if (element.id === 6) {
                         bead.style.transform = 'translateX(-10vw)';
                     }
                     else if (element.id === 13) {
@@ -173,7 +173,7 @@ function handleAction(event) {
                     setTimeout(() => {
                         //bead.classList.remove('fake-right-position');
                         bead.style.transform = 'translate(0vw)';
-                    }, 0); */
+                    }, 0); 
                 } 
             });
 
@@ -217,7 +217,7 @@ function switchPlayer() {
 
 
 function captureBeads(pots, lastPot) {
-        let lastPotBeanCount = state.board[lastPot];
+        let lastPotBeadCount = state.board[lastPot];
         let beads = []
         let store = null
         if (state.turn === 1 && lastPot === 0) {
