@@ -9,25 +9,25 @@
 header {
 display: flex;
 flex-direction: column;
-
 width: 100%;
 
 }
 
 h1 {
+    font-size: 400%;
     text-align: center;
     margin: 3vw;
     padding: 10px;
-
 }
 
- nav {
+nav {
     display: flex;
     flex-direction: column;
     width: 100%;
+    
 }
 
-.collapsible {
+button {
     font-family: 'Delius Unicase', cursive;
     justify-content: flex-start;
     align-items: start;
@@ -36,15 +36,14 @@ h1 {
     color: #f7f2f2;
     cursor: pointer;
     padding: 18px;
-
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
 }
 
-.active, .collapsible:hover {
-    background-color: #6f9f75;
+.active, button:hover {
+    background-color: rgb(129 165 144);
     color: whitesmoke;
 }
 
@@ -70,9 +69,9 @@ body {
   background-color:rgb(255, 255, 255);
 }
 
-.turn > .player1 {
-    position: relative;
-    top: 350px; left: center;
+.turn {
+    font-size: 150%;
+    text-align: center;
 }
 
 
@@ -80,13 +79,13 @@ body {
     display: flex;
   background-color:rgb(5, 71, 52);
   margin: 2vw;
-  height:250px;
-  width:850px;
+  height:20vw;
+  width:70%;
   border-radius:30px;
   border-style: solid;
   border-color: rgb(242, 240, 235);
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
-  inset 5px 5px 5px rgba(0,0,0,0.5);
+  inset 15px 15px 15px rgba(0,0,0,0.5);
 
 }
 
@@ -129,21 +128,19 @@ display: flex;
 }
 
 .beads {
-    width: 2vw;
-    height: 0.5vw;
-    background-color: rgb(250, 154, 10);
     position: absolute;
-    top: 37px;
+    width: 25%;
+    height: 7%;
+    background-color: rgb(250, 154, 10);
+    top: 37%;
     left: 25px;
     border-radius: 100%;
     border: 0.5px solid rgb(192, 136, 5);
-    /* transform: translateX(0vw); */
     padding: 7px 1px;
-    
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5),
-    inset 4px 4px 4px rgba(103, 62, 12, 0.5);
+    box-shadow: 8px 4px 4px rgba(0,0,0,0.5),
+    inset 8px 5px 8px rgba(114, 66, 8, 0.7);
     transform: translateX(0vw);
-    transition: transform 1.8s;
+    transition: transform 0.5s;
 }
 
 .fake-left-position {
@@ -161,20 +158,26 @@ display: flex;
     grid-template-columns: 50fr 50fr 50fr;
     grid-template-rows: 50fr 50fr;
     grid-template-areas: 
-        "header header header"
+        "header-l header header-r"
         "left . right";
     border-style: solid;
     border-color: rgb(163, 166, 159);
     width: 100%;
     margin: 7rem;
-    padding: 15px auto;
-    background-color: rgb(95, 134, 94);
+    background-color: rgb(129, 165, 144);
     color: whitesmoke;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+   /* box-shadow: 5px 5px 5px rgba(0,0,0,0.5); */
+    font-size: 150%
 }
 
 .score-player1, .score-player2 {
     text-align: center;
+    margin: 2rem;
+    align-items: center;
+}
+
+.score-player2 {
+    grid-area: header-l;
 }
 
 .score > h3 {
@@ -182,34 +185,19 @@ display: flex;
     justify-self: center;
 }
 
-.score > .score-player1 {
+.score-player1 {
+    grid-area: header-r;
+}
+
+.score2 {
     grid-area: left;
+    text-align: center;
+    font-size: 200%;
 }
 
-.score > .score-player2 {
+.score1 {
     grid-area: right;
+    text-align: center;
+    font-size: 200%;
 }
 
-
-
-
-
-/* -----
-
-.beads > div {
-
-	border: 0.5px;
-    border-style: solid;
-	border-radius: 45%;
-    width: 20px;
-    padding: 7px 1px;
-    background-color: rgb(250, 154, 10);
-    border-color:rgb(192, 136, 5);
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5),
-    inset 4px 4px 4px rgba(103, 62, 12, 0.5);
-}
-
-
-
-
------ */

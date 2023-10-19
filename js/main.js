@@ -13,8 +13,10 @@ let state = {
     board: [],
     turn: null,
     winner: null,
-    scorePlayer1: null,
-    scorePlayer2: null,
+   // scorePlayer1: null,
+   // scorePlayer2: null,
+    score1: null,
+    score2: null,
 }
 
 /* -----  cached elements ------ */
@@ -30,6 +32,8 @@ const elements = {
     pots: document.querySelectorAll('.pot'),
     scorePlayer1: document.querySelector('.score-player1'),
     scorePlayer2: document.querySelector('.score-player2'),
+    score1: document.querySelector('.score1'),
+    score2: document.querySelector('.score2')
 };
 
 
@@ -78,8 +82,11 @@ function init() {
     elements.player2.innerText = `Player 2`;
     elements.player2.style.color = 'grey';
     state.winner = null;
-    scorePlayer1 = null;
-    scorePlayer2 = null;
+    score1 = null;
+    score2 = null;
+    elements.score1.innerHTML = `<span> ${0} </span>`;
+    elements.score2.innerHTML = `<span> ${0} </span>`;
+    render();
 
     resetBeads()
 //     elements.pots.forEach((element, bead) => {
@@ -99,52 +106,44 @@ function init() {
 }
 
 elements.beads.forEach(function (element) {
-    element.style.top = 1 + (Math.random() * 4) + 'vw';  
-    element.style.left = 1 + (Math.random() * 3) + 'vw';
+    element.style.top = 3 + (Math.random() * 3) + 'vw';  
+    element.style.left = 1 + (Math.random() * 2) + 'vw';
 });  
 
 
 
 function handleAction(event) {
-    console.log('click detected')
-
-    elements.beads = event.target.querySelectorAll('.beads')
-    
+    elements.beads = event.target.querySelectorAll('.beads');           //this only gets beads in clicked pot (event target)
     const pots = elements.pots;
-    const beads = elements.beads;
-    let currentPot = event.target.id;
-    console.log("currentPot " + currentPot)
-    console.log('state.turn ' + state.turn)
-    // Alternative to not rely on array rather then use the HTML store and retrieve the seed count
-    let numBeadsCurrentPot = beads.length;
-    // let numBeadsCurrentPot = state.board[currentPot];
-    console.log('numBeadsCurrentPot ' + numBeadsCurrentPot)
+    const beads = elements.beads;       // hence refers to beads in current pot only
+    let currentPot = event.target.id;           //defines which pot has been clicked
+    let numBeadsCurrentPot = beads.length;              // array = beads in clicked pot  (  let numBeadsCurrentPot = state.board[currentPot];)
+  
     if (state.winner !== null) {
         return;
     }
 
-    //  Add one bean to pot
-
-    // Skip to next if nextPot is 6 or 13
-    console.log('numBeadsCurrentPot ' + numBeadsCurrentPot)             
+    // Skip to next if nextPot is 6 or 13      
 
     if (state.turn === 1 && currentPot <= 5 || state.turn === 2 && currentPot >= 7 && currentPot <= 12) {           //beads can only be taken from own store
         let nextPot = Number(currentPot);
         for ( let i = numBeadsCurrentPot; i > 0; i-- ) {
-            console.log('i ' + i)
-
-            // Identify next pot & if we are at the end of the pots
-            nextPot = (nextPot + 1) % pots.length;
-            console.log(' nextPot asdf ' + nextPot)
+            
+            nextPot = (nextPot + 1) % pots.length;                      // Identify next pot & if we are at the end of the pots
+           
             if (state.turn === 1 && nextPot !== 13 || state.turn === 2 && nextPot !== 6) {                  //to exclude opposite player's store - 
                 nextPotBeanCount = state.board[nextPot];
                 state.board[nextPot] = nextPotBeanCount + 1;
+                console.log('asdfasdf')
+                console.log(state.board)
                 
                 // } else if ( nextPot === 14) {
                 // nextPotBeanCount = state.board[0];
                 // state.board[0] = nextPotBeanCount + 1;
-            } else {                                              //else: means if next pot is store of the other player (ie for player 1 = pot13, for player 2 = pot6), skip this pot and move to next
+            } 
+            else {                                              //else: means if next pot is store of the other player (ie for player 1 = pot13, for player 2 = pot6), skip this pot and move to next
                 nextPot = (nextPot + 1) % pots.length;
+                console.log(' nextPot asdf2 ' + nextPot)
                 nextPotBeanCount = state.board[nextPot];
                 state.board[nextPot] = nextPotBeanCount + 1;
             }  
@@ -154,14 +153,30 @@ function handleAction(event) {
                 if (element.id == nextPot) {
                     // Set bean element from query
                     let bead = beads[(i-1)]
-                    
+                    console.log('bead length' + bead.length)
+             
                     element.appendChild(bead);
+            /*           if (element.id === 6) {
+                        bead.style.transform = 'translateX(-10vw)';
+                    }
+                    else if (element.id === 13) {
+                        bead.style.transform = 'translateX(10vw)';
+                    }
+                    else if (element.id < 6) {
+                        bead.style.transform = 'translateX(-10vw)';
+                        // bead.style.transform = 'translateY(-10vw)';
+                    } else if (element.id > 6 && element.id < 13) {
+                        bead.style.transform = 'translateX(10vw)';
+                        // bead.style.transform = 'translateY(10vw)';
+                    }
                     // bead.classList.add('fake-right-position'); 
-                    // setTimeout(() => {
-                    //     bead.classList.remove('fake-right-position');
-                    // }, 0);
-                }
+                    setTimeout(() => {
+                        //bead.classList.remove('fake-right-position');
+                        bead.style.transform = 'translate(0vw)';
+                    }, 0); */
+                } 
             });
+
             console.log('state.board ' + state.board)
         }
         console.log('pots' + pots)
@@ -199,7 +214,6 @@ function switchPlayer() {
     }
     console.log(`${players[state.turn]}'s turn.`);
 };
-
 
 
 function captureBeads(pots, lastPot) {
@@ -361,7 +375,7 @@ function captureBeads(pots, lastPot) {
                 }
             });
 
-        } else if (state.turn === 2 && state.board[12]) {
+        } else if (state.turn === 2 && lastPot === 12) {
             state.board[13] = state.board[13] + state.board[lastPot] + state.board[0];
             state.board[lastPot] = 0;
             state.board[0] = 0;                                                                
@@ -375,8 +389,11 @@ function captureBeads(pots, lastPot) {
                 }
             });
         };
-
-        moveBeadsToStore(pots, beads, store);
+        setTimeout(() => {
+            //bead.classList.remove('fake-right-position');
+            moveBeadsToStore(pots, beads, store);
+        }, 500);
+        ;
    //     } else {
      //       state.turn !== state.turn;
        // }
@@ -394,10 +411,22 @@ function moveBeadsToStore(pots, beads, store) {
             for ( let i = beads.length; i > 0; i-- ) {
                 let beadsIndex = (i-1)
                 element.appendChild(beads[beadsIndex]);
-            };
+                if (element.id < 6) {
+                    beads.style.transform = 'translateX(-10vw)';
+                } else if (element.id > 6 && element.id < 13) {
+                    beads.style.transform = 'translateX(10vw)';
+                }
+
+            }
         };
     });
 }
+
+
+
+
+
+
 
 
 function checkGameOver() {
@@ -428,11 +457,21 @@ function determineWinner() {
     render()
 };
 
-
 function render() {
-    elements.scorePlayer1.innerHTML = `Player 1  <br>  <span> ${[state.board[6]]} </span>` ; 
-    elements.scorePlayer2.innerHTML = `Player 2  <br>  <span> ${[state.board[13]]} </span>` ;
+    renderMessage();
+ //   renderScore();
+}
+
+function renderMessage() {
+    elements.score1.innerHTML = `<span> ${[state.board[6]]} </span>` ; 
+    elements.score2.innerHTML = `<span> ${[state.board[13]]} </span>` ;
 };
-    
+  /*  
+function renderScore() {
+    if (state.score1 == null && state.score2 == null) {
+    elements.score1.innerHTML = `Player 1  <br>  <span> ${0} </span>`;
+    elements.score2.innerHTML = `Player 2  <br>  <span> ${0} </span>`;
+    };
+};
 
-
+*/
