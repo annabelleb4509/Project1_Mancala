@@ -45,21 +45,21 @@ document.querySelector('button').addEventListener('click', init)
 
 /* ----- functions ------ */
 
-// Reset Beads in Pots function
-function resetBeads() {
-    elements.beads.forEach((element) => {
+
+function resetBeads() {                                             // Reset Beads in Pots function
+    elements.beads.forEach((element) => {                           // first remove all beads from pots
         element.remove();
     });
 
-    beadsToAdd = [...elements.originalbeads]
-    elements.pots.forEach(element => {
+    beadsToAdd = [...elements.originalbeads]                        // create array that contains all beads
+    elements.pots.forEach(element => {                              // loop through pots - 6 & 13 are Mancalas, so don't receive any beads
         if (element.id === '6' || element.id === '13') {
             return;
-        } else {
+        } else {                                                    // any other pots if bead no in pot is less than 4 add beads
             for (let i = 0; i < 4; i++) {
                 element.appendChild(beadsToAdd[i]);
             }
-            beadsToAdd.splice(0, 4)
+            beadsToAdd.splice(0, 4)                                 // Remove the four added beads from array
         }
     });
 };
@@ -83,7 +83,7 @@ function init() {
     resetBeads()
 }
 
-elements.beads.forEach(function (element) {
+elements.beads.forEach(function (element) {                             // distribute beads randomly in their pots
     element.style.top = 3 + (Math.random() * 3) + 'vw';  
     element.style.left = 1 + (Math.random() * 2) + 'vw';
 });  
@@ -141,7 +141,7 @@ function handleAction(event) {
 
         }
 
-    if (state.board[nextPot] !== 1) {                                               // to check wheather capturing beads applies
+    if (state.board[nextPot] !== 1) {                                               // to check whether capturing beads applies
         switchPlayer();
     } else if(state.board[nextPot] === 6 || state.board[nextPot] === 13) {
         state.turn = (state.turn === 1) ? 1 : 2;
@@ -172,8 +172,8 @@ function switchPlayer() {
 };
 
 
-function captureBeads(pots, lastPot) {
-        let lastPotBeadCount = state.board[lastPot];
+function captureBeads(pots, lastPot) {                                              // this function runs only if last bead dropped into an empty pot
+        let lastPotBeadCount = state.board[lastPot];                                // then check which pot no is this last pot, determine opposite pot and move all beads from both pots into player's own store
         let beads = []
         let store = null
         if (state.turn === 1 && lastPot === 0) {
